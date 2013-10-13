@@ -45,6 +45,13 @@ public class TestAnagram {
 		assertAnagramsEquals(new String[]{"a bcd", "a cbd", "a dcb"}, new String[]{"a", "bcd", "cbd", "dcb"}, "abcd");
 	}
 	
+	@Test
+	public void acceptance_test() {
+		assertAnagramsEquals(new String[]{"ab ab", "ab ba", "ba ba"}, new String[]{"ab", "ba"}, "abab");
+		assertAnagramsEquals(new String[]{"ab cd", "ab dc", "ba cd", "ba dc", "bc ad"}, 
+				new String[]{"gh", "ab", "ba", "cd", "ef", "bc", "ad", "dc"}, "abcd");
+	}
+	
 	private void assertAnagramsEquals(String[] expectedAnagrams, String[] wordList, String input) {
 		Anagram generator = new Anagram(wordList);
 		List<String> actualAnagrams = generator.generate(input);
