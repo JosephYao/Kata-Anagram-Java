@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Anagram {
@@ -30,7 +31,17 @@ public class Anagram {
 
 	private boolean isAnagram(String input, String firstPartOfAnagram,
 			String secondPartOfAnagram) {
-		return (firstPartOfAnagram + secondPartOfAnagram).equals(input);
+		return sortedCharsOfStrings(firstPartOfAnagram, secondPartOfAnagram)
+				.equals(sortedCharsOfStrings(input));
+	}
+
+	private List<Character> sortedCharsOfStrings(String... originalStrings) {
+		List<Character> result = new ArrayList<Character>();
+		for (String eachString : originalStrings)
+			for (char eachChar : eachString.toCharArray())
+				result.add(eachChar);
+		Collections.sort(result);
+		return result;
 	}
 
 }

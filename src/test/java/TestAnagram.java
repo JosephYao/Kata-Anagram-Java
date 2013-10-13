@@ -34,6 +34,11 @@ public class TestAnagram {
 		assertAnagramsEquals(new String[]{"b d"}, new String[]{"a", "b", "c", "d"}, "bd");
 	}
 	
+	@Test
+	public void word_combination_is_anagram_but_order_is_different_from_input() {
+		assertAnagramsEquals(new String[]{"a b"}, new String[]{"a", "b"}, "ba");
+	}
+	
 	private void assertAnagramsEquals(String[] expectedAnagrams, String[] wordList, String input) {
 		Anagram generator = new Anagram(wordList);
 		List<String> actualAnagrams = generator.generate(input);
