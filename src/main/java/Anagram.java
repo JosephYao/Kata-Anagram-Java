@@ -15,13 +15,20 @@ public class Anagram {
 		if (wordList.isEmpty())
 			return new ArrayList<String>();
 
-		for (String firstPartOfAnagram : wordList)
-			for (String secondPartOfAnagram : wordList)
-				if (isAnagram(input, firstPartOfAnagram, secondPartOfAnagram))
-					return Arrays.asList(new String[] { createAnagram(
-							firstPartOfAnagram, secondPartOfAnagram) });
+		List<String> anagrams = new ArrayList<String>();
 
-		return new ArrayList<String>();
+		for (String firstPartOfAnagram : wordList)
+			for (String secondPartOfAnagram : secondPartOfAnagramCandidates(firstPartOfAnagram))
+				if (isAnagram(input, firstPartOfAnagram, secondPartOfAnagram))
+					anagrams.add(createAnagram(firstPartOfAnagram,
+							secondPartOfAnagram));
+
+		return anagrams;
+	}
+
+	private List<String> secondPartOfAnagramCandidates(String firstPartOfAnagram) {
+		return wordList.subList(wordList.indexOf(firstPartOfAnagram),
+				wordList.size());
 	}
 
 	private String createAnagram(String firstPartOfAnagram,
