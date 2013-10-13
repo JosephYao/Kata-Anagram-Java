@@ -14,19 +14,23 @@ public class Anagram {
 		if (wordList.isEmpty())
 			return new ArrayList<String>();
 
-		for (String secondPartOfAnagram : wordList)
-			if (isAnagram(input, secondPartOfAnagram))
-				return Arrays.asList(new String[]{createAnagram(secondPartOfAnagram)});
+		for (String firstPartOfAnagram : wordList)
+			for (String secondPartOfAnagram : wordList)
+				if (isAnagram(input, firstPartOfAnagram, secondPartOfAnagram))
+					return Arrays.asList(new String[] { createAnagram(
+							firstPartOfAnagram, secondPartOfAnagram) });
 
 		return new ArrayList<String>();
 	}
 
-	private String createAnagram(String secondPartOfAnagram) {
-		return wordList.get(0) + " " + secondPartOfAnagram;
+	private String createAnagram(String firstPartOfAnagram,
+			String secondPartOfAnagram) {
+		return firstPartOfAnagram + " " + secondPartOfAnagram;
 	}
 
-	private boolean isAnagram(String input, String secondPartOfAnagram) {
-		return (wordList.get(0) + secondPartOfAnagram).equals(input);
+	private boolean isAnagram(String input, String firstPartOfAnagram,
+			String secondPartOfAnagram) {
+		return (firstPartOfAnagram + secondPartOfAnagram).equals(input);
 	}
 
 }

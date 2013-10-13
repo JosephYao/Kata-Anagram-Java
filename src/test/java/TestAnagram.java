@@ -28,6 +28,12 @@ public class TestAnagram {
 		assertAnagramsEquals(new String[]{"a c"}, new String[]{"a", "b", "c"}, "ac");
 	}
 	
+	@Test
+	public void input_is_the_combination_of_any_word_in_the_word_list() {
+		assertAnagramsEquals(new String[]{"b c"}, new String[]{"a", "b", "c"}, "bc");
+		assertAnagramsEquals(new String[]{"b d"}, new String[]{"a", "b", "c", "d"}, "bd");
+	}
+	
 	private void assertAnagramsEquals(String[] expectedAnagrams, String[] wordList, String input) {
 		Anagram generator = new Anagram(wordList);
 		List<String> actualAnagrams = generator.generate(input);
