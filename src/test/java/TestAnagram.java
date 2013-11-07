@@ -38,6 +38,11 @@ public class TestAnagram {
 		assertAnagramsEquals(new String[]{"a b"}, new String[]{"a", "b"}, "ab");
 		assertAnagramsEquals(new String[]{"b d"}, new String[]{"a", "b", "c", "d"}, "bd");
 	}
+	
+	@Test
+	public void two_anagrams() {
+		assertAnagramsEquals(new String[]{"a bc", "a cb"}, new String[]{"a", "bc", "cb"}, "abc");
+	}
 
 	private void assertAnagramsEquals(String[] expectedAnagrams, String[] wordList, String input) {
 		Anagram generator = new Anagram(wordList);

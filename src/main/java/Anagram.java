@@ -5,22 +5,31 @@ import java.util.List;
 
 public class Anagram {
 
-	private final String[] wordList;
+	private final List<String> wordList;
 
 	public Anagram(String[] wordList) {
-		this.wordList = wordList;
+		this.wordList = Arrays.asList(wordList);
 	}
 
 	public List<String> generate(String input) {
-		if (wordList.length == 0)
-			return new ArrayList<String>();
+		List<String> anagrams = new ArrayList<String>();
 		
-		for (String firstPartOfAnagram : wordList)
-			for (String secondPartOfAnagram : wordList)
-				if (isAnagram(input, firstPartOfAnagram, secondPartOfAnagram))
-					return Arrays.asList(new String[] { firstPartOfAnagram + " " + secondPartOfAnagram});
+		List<String> firstPartOfAnagrams = wordList;
+		for (String firstPart : firstPartOfAnagrams)
+			for (String secondPart : secondPartOfAnagrams(firstPart))
+				if (isAnagram(input, firstPart, secondPart))
+					anagrams.add(createAnagram(firstPart, secondPart));
 		
-		return new ArrayList<String>();
+		return anagrams;
+	}
+
+	private String createAnagram(String firstPartOfAnagram,
+			String secondPartOfAnagram) {
+		return firstPartOfAnagram + " " + secondPartOfAnagram;
+	}
+
+	private List<String> secondPartOfAnagrams(String firstPartOfAnagram) {
+		return wordList.subList(wordList.indexOf(firstPartOfAnagram), wordList.size());
 	}
 
 	private boolean isAnagram(String input, String firstPartOfAnagram, String secondPartOfAnagram) {
