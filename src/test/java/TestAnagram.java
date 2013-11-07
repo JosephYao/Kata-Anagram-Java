@@ -27,6 +27,17 @@ public class TestAnagram {
 		assertAnagramsEquals(new String[]{"b b"}, new String[]{"a", "b"}, "bb");
 		assertAnagramsEquals(new String[]{"c c"}, new String[]{"a", "b", "c"}, "cc");
 	}
+	
+	@Test
+	public void input_character_order_is_different_from_anagrams() {
+		assertAnagramsEquals(new String[]{"ab ab"}, new String[]{"ab"}, "baab");
+	}
+	
+	@Test
+	public void more_than_one_word_list_and_input_is_the_combination_of_any_two_words() {
+		assertAnagramsEquals(new String[]{"a b"}, new String[]{"a", "b"}, "ab");
+		assertAnagramsEquals(new String[]{"b d"}, new String[]{"a", "b", "c", "d"}, "bd");
+	}
 
 	private void assertAnagramsEquals(String[] expectedAnagrams, String[] wordList, String input) {
 		Anagram generator = new Anagram(wordList);

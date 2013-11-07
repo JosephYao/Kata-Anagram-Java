@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Anagram {
 
-	private String[] wordList;
+	private final String[] wordList;
 
 	public Anagram(String[] wordList) {
 		this.wordList = wordList;
@@ -15,15 +15,20 @@ public class Anagram {
 		if (wordList.length == 0)
 			return new ArrayList<String>();
 		
-		for (String anagram : wordList)
-			if (isAnagram(input, anagram))
-				return Arrays.asList(new String[]{anagram + " " + anagram});
+		for (String firstPartOfAnagram : wordList)
+			for (String secondPartOfAnagram : wordList)
+				if (isAnagram(input, firstPartOfAnagram, secondPartOfAnagram))
+					return Arrays.asList(new String[] { firstPartOfAnagram + " " + secondPartOfAnagram});
 		
 		return new ArrayList<String>();
 	}
 
-	private boolean isAnagram(String input, String anagram) {
-		return (anagram + anagram).equals(input);
+	private boolean isAnagram(String input, String firstPartOfAnagram, String secondPartOfAnagram) {
+		char[] inputChars = input.toCharArray();
+		Arrays.sort(inputChars);
+		char[] anagramChars = (firstPartOfAnagram + secondPartOfAnagram).toCharArray();
+		Arrays.sort(anagramChars);
+		return Arrays.equals(inputChars, anagramChars);
 	}
 
 }
